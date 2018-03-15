@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <title>Test pagination</title> 	
+      <link href="jquery-ui.css" rel="stylesheet">
+      <link href="pagination.css" rel="stylesheet">
+   </head>
+   <body>
+    <div class="content-box">
+
+        <div class="pageDiv">
+        </div>
+
+        <br> <br> <br> <br>
+        <hr>
+
+      <button id="one">展示第三页内容</button>&nbsp;
+      <button id="two">改变总记录数为 62</button>&nbsp;
+      <button id="three">改变每页展示 8条数据</button>&nbsp;
+
+    </div>
+
+      <script type="text/javascript" src="jquery.js"></script>
+      <script src="jquery-ui.js"></script>
+      
+      <script type="text/javascript" src="pagination.js"></script>
+      <script type="text/javascript">
+          var pagination = $(".pageDiv").pagination({
+              perPage : 10,
+              totalRecords : 93,
+              curr : 1,
+              selectedColor : '#1E9FFF',
+              jump : function(e, curr, perPage) {
+                  console.log('the current page is ' + curr);
+              },
+              create: function(e, createEventData) {
+                  console.log(createEventData);
+              }
+          });
+          $('#one').on('click', function() {
+              // 支持 previous、start、next、end、数字这些参数
+              pagination.pagination('showPage', 3);
+          });
+          $('#two').on('click', function() {
+              pagination.pagination('allRecords', 62);
+          });
+          $('#three').on('click', function() {
+              pagination.pagination('perPage', 8);
+          });
+      </script>
+
+   </body>
+	
+</html>
